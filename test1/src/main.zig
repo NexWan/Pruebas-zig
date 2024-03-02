@@ -1,14 +1,7 @@
 const std = @import("std");
-const AllocationError = error{OutOfMemory};
-const AccessDeniedError = error{AccessDenied};
 const print = std.debug.print;
-const fileError = error{
-    AccessDenied,
-    OutOfMemory,
-    FileNotFound,
-};
+const path = "/src/textFiles";
 const File = std.fs.cwd;
-const expect = std.testing.expect;
 
 /// Comentario jeje xd
 /// Este programa lee crea un archivo de texto, escribe "ola jeje comota" y lo muestra en consola
@@ -30,6 +23,7 @@ pub fn main() !void {
     while (try in_stream.readUntilDelimiterOrEof(&buf, '\n')) |line| {
         print("Hola: {s} \n", .{line}); //Imprimir
     }
+    defer (buf);
 }
 
 pub fn fibo(x: i32) i32 {
